@@ -43,7 +43,9 @@ namespace Game
                     break;
                 }
 
-                void PrintBoard()
+            }
+
+            void PrintBoard()
             {
                 var row1 = $"| {board[0]} | {board[1]} | {board[2]} |";
                 var row2 = $"| {board[3]} | {board[4]} | {board[5]} |";
@@ -99,8 +101,6 @@ namespace Game
                     return true;
                 else
                     return false;
-            }
-
             }
         }
     }
