@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Game
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             var board = new List<string>();
-            for (int i = 0; i < 9; i++)
+            for (var i = 0; i < 9; i++)
                 board.Add(" ");
 
             while (true)
@@ -37,12 +33,9 @@ namespace Game
                     Console.WriteLine("\nO Wins! Contratulations!");
                     break;
                 }
-                if (IsDraw())
-                {
-                    Console.WriteLine("\nIt's a draw!");
-                    break;
-                }
-
+                if (!IsDraw()) continue;
+                Console.WriteLine("\nIt's a draw!");
+                break;
             }
 
             void PrintBoard()
@@ -60,11 +53,13 @@ namespace Game
 
             void PlayerMove(string icon)
             {
-                int number = 0;
+                var number = 0;
                 if (icon == "X")
                     number = 1;
-                else if(icon == "O")
+                else if (icon == "O")
+                {
                     number = 2;
+                }
 
                 Console.WriteLine($"Your turn player {number}: \n");
                 Console.WriteLine("Enter your move (1-9)");
@@ -82,25 +77,19 @@ namespace Game
 
             bool IsVictory(string player)
             {
-                if ((board[0] == player && board[1] == player && board[2] == player) ||
-                    (board[3] == player && board[4] == player && board[5] == player) ||
-                    (board[6] == player && board[7] == player && board[8] == player) ||
-                    (board[0] == player && board[3] == player && board[6] == player) ||
-                    (board[1] == player && board[4] == player && board[7] == player) ||
-                    (board[2] == player && board[5] == player && board[8] == player) ||
-                    (board[0] == player && board[4] == player && board[8] == player) ||
-                    (board[2] == player && board[4] == player && board[6] == player))
-                    return true;
-                else
-                    return false;
+                return (board[0] == player && board[1] == player && board[2] == player) ||
+                       (board[3] == player && board[4] == player && board[5] == player) ||
+                       (board[6] == player && board[7] == player && board[8] == player) ||
+                       (board[0] == player && board[3] == player && board[6] == player) ||
+                       (board[1] == player && board[4] == player && board[7] == player) ||
+                       (board[2] == player && board[5] == player && board[8] == player) ||
+                       (board[0] == player && board[4] == player && board[8] == player) ||
+                       (board[2] == player && board[4] == player && board[6] == player);
             }
 
             bool IsDraw()
             {
-                if (!board.Contains(" "))
-                    return true;
-                else
-                    return false;
+                return !board.Contains(" ");
             }
         }
     }
