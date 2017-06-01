@@ -54,11 +54,14 @@ namespace Game
             void PlayerMove(string icon)
             {
                 var number = 0;
-                if (icon == "X")
-                    number = 1;
-                else if (icon == "O")
+                switch (icon)
                 {
-                    number = 2;
+                    case "X":
+                        number = 1;
+                        break;
+                    case "O":
+                        number = 2;
+                        break;
                 }
 
                 Console.WriteLine($"Your turn player {number}: \n");
